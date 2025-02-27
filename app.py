@@ -5,9 +5,28 @@ import os
 from io import BytesIO
 import time  # Added for animations
 
+
 # Setup our App
-st.set_page_config(page_title="📊 Data Sweeper", layout="wide")
-st.markdown("<h1 style='color: blue; text-align: center;'>🧹 Data Sweeper</h1>", unsafe_allow_html=True)
+st.set_page_config(page_title="Growth Mindset Challenge:Web App With Streamlit", layout="wide")
+# st.set_page_config(page_title="📊 Data Sweeper", layout="wide")
+st.markdown(
+    """
+    <style>
+        .stApp {
+            background-color: #d3d3d3; /* Gray background */
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+
+st.markdown("<h1 style='color: blue; text-align: center;'> Growth Mindset Challenge:Web App With Streamlit</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='color: red; text-align: center;'>🧹 Data Sweeper</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='color: green; text-align: center;'>Made by Mubeshira Saad</h1>", unsafe_allow_html=True)
+
+
+
 st.write("🔄 Transform your files between **CSV** and **Excel** formats with built-in data cleaning and visualization.")
 
 # File Upload Section
@@ -69,7 +88,7 @@ if uploaded_file:
 
         # File Conversion Options
         st.subheader("📂 File Conversion")
-        conversion_type = st.radio(f"🔄 Convert {file.name} to:", ["CSV", "Excel"], key=file.name)
+        conversion_type = st.radio(f"🔄 Convert {file.name} to:", ["CSV"], key=file.name)
 
         if st.button(f"📥 Convert {file.name}"):
             with st.spinner("⏳ Processing file... Please wait."):
@@ -81,10 +100,10 @@ if uploaded_file:
                     file_name = file.name.replace(file_extension, ".csv")
                     mime_type = "text/csv"
 
-                elif conversion_type == "Excel":
-                    df.to_excel(buffer, index=False, engine="openpyxl")  # Fixed error: Added openpyxl engine
-                    file_name = file.name.replace(file_extension, ".xlsx")
-                    mime_type = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+               # elif conversion_type == "Excel":
+                   ## df.to_excel(buffer, index=False, engine="openpyxl")  # Fixed error: Added openpyxl engine
+                    #file_name = file.name.replace(file_extension, ".xlsx")
+                    #mime_type = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
 
                 buffer.seek(0)
 
